@@ -37,6 +37,8 @@ add_executable(example
         tests/my_test.c
         tests/mt_lliot.c
         data_log_demo.c
+        SimpleDS3231.c
+
 )
 
 pico_set_program_name(example "example")
@@ -48,6 +50,7 @@ pico_enable_stdio_usb(example 1)
 # Add the standard library to the build
 target_link_libraries(example 
         FreeRTOS+FAT+CLI
+        hardware_i2c
 )
 target_include_directories(example PUBLIC 
         include/ 

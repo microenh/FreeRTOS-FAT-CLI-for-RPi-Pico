@@ -1,0 +1,34 @@
+{
+	"cmake.environment": {
+		"PICO_SDK_PATH": "/Users/mark/pico/pico-sdk"
+	},
+    // These settings tweaks to the cmake plugin will ensure
+    // that you debug using cortex-debug instead of trying to launch
+    // a Pico binary on the host
+    "cmake.statusbar.advanced": {
+        "debug": {
+            "visibility": "hidden"
+        },
+        "launch": {
+            "visibility": "hidden"
+        },
+        // "build": {
+        //     "visibility": "hidden"
+        // },
+        // "buildTarget": {
+        //     "visibility": "hidden"
+        // }
+    },
+    "cmake.buildBeforeRun": true,
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "cortex-debug.openocdPath": "/Users/mark/pico/openocd/src/openocd",
+  "cmake.sourceDirectory": "${workspaceFolder}/example",
+  "files.associations": {
+    "*.c": "c",
+    "freertos_time.h": "c",
+    "freertos.h": "c",
+    "ff_time.h": "c",
+    "rtc.h": "c",
+    "cli-commands.h": "c"
+  },
+}

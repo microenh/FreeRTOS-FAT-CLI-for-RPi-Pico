@@ -25,7 +25,7 @@ specific language governing permissions and limitations under the License.
 #define configUSE_TICKLESS_IDLE                 0
 #define configCPU_CLOCK_HZ                      125000000/* Looking at runtime.c in the RPI 2040 SDK, the sys clock frequency is 125MHz */
 #define configSYSTICK_CLOCK_HZ                  1000000  /* This is always 1MHz on ARM I think.... */
-#define configTICK_RATE_HZ                      1000      /* I personally like 1kHz so you can do 1 ms sleeps */
+#define configTICK_RATE_HZ                      ((TickType_t) 1000)      /* I personally like 1kHz so you can do 1 ms sleeps */
 #define configMAX_PRIORITIES                    5
 #define configMINIMAL_STACK_SIZE                128      /* you might want to increase this, especially if you do any floating point printf  *YIKES* */
 #define configMAX_TASK_NAME_LEN                 16
@@ -128,5 +128,14 @@ extern uint64_t time_us_64(void); // "hardware/timer.h"
 #define portGET_RUN_TIME_COUNTER_VALUE() (time_us_64()/100)
 
 /* A header file that defines trace macro can be included here. */
+
+#ifndef configTICK_TYPE_WIDTH_IN_BITS
+  #if configUSE_16_BIT_TICKS == 1
+    #define configTICK_TYPE_WIDTH_IN_BITS TICK_TYPE_WIDTH_16_BITS
+  #else 
+    #define configTICK_TYPE_WIDTH_IN_BITS TICK_TYPE_WIDTH_32_BITS
+  #endif
+  #undef configUSE_16_BIT_TICKS
+#endif
 
 #endif /* FREERTOS_CONFIG_H */
