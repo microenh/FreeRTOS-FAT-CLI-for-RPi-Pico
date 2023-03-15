@@ -36,12 +36,14 @@ int main() {
     crash_handler_init();
     stdio_init_all();
 
-    // [mee] add - set RTC time from DS3231
-    datetime_t t;
-    readDS3231(&t);
-    rtc_set_datetime(&t);
-  
     FreeRTOS_time_init();
+
+    // [mee] add - set RTC time from DS3231
+    if (!rtc_running()) {
+      datetime_t t;
+      readDS3231(&t);
+      setrtc(&t);
+    }
 
     CLI_Start();
 
