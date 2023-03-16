@@ -163,6 +163,7 @@ quit:
 }
 
 static void data_log_demo() {
+    die_now = false;
     static StackType_t xStack[768];
     static StaticTask_t xTaskBuffer;
     if (!th) {

@@ -29,6 +29,7 @@
     "freertos.h": "c",
     "ff_time.h": "c",
     "rtc.h": "c",
-    "cli-commands.h": "c"
+    "cli-commands.h": "c",
+    "elf.h": "c"
   },
 }

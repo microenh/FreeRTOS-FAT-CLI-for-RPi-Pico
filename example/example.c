@@ -25,6 +25,9 @@ specific language governing permissions and limitations under the License.
 #include "stdio_cli.h"
 #include "hardware/rtc.h"
 
+#include <elf.h>
+
+
 
 void readDS3231(datetime_t *rtc);
 

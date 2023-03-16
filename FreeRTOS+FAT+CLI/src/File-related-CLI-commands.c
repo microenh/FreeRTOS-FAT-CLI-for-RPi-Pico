@@ -291,7 +291,8 @@ size_t xColumns = 80U;
 		xReturn = pdFALSE;
 	}
 
-	strcat( pcWriteBuffer, cliNEW_LINE );
+  // [mee] 3/16/23 - not needed for text files
+	// strcat( pcWriteBuffer, cliNEW_LINE );
 
 	return xReturn;
 }
