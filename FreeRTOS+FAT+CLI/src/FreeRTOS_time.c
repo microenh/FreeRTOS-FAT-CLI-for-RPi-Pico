@@ -89,7 +89,8 @@ void FreeRTOS_time_init() {
             }
         }
     }
-    if (rtc_running()) {
+    // [mee] 3/16/23 - don't set timer if already set
+    if (rtc_running() && !timer.alarm_id) {
         // Create a repeating timer that calls repeating_timer_callback.
         // If the delay is > 0 then this is the delay between the previous
         // callback ending and the next starting. If the delay is negative (see
@@ -104,7 +105,8 @@ void FreeRTOS_time_init() {
 
 void setrtc(datetime_t *t) { 
     rtc_set_datetime(t);
-    if (rtc_running()) {
+    // [mee] 3/16/23 - don't set timer if already set
+    if (rtc_running() && !timer.alarm_id) {
         add_repeating_timer_ms(-1000, repeating_timer_callback, NULL, &timer);
     }
 }

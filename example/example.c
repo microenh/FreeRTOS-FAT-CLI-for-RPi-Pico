@@ -38,15 +38,13 @@ int main() {
 
     FreeRTOS_time_init();
 
-    // [mee] add - set RTC time from DS3231
-    if (!rtc_running()) {
-      datetime_t t;
-      readDS3231(&t);
-      setrtc(&t);
-    }
 
     CLI_Start();
 
+    // [mee] add - set RTC time from DS3231
+    datetime_t t;
+    readDS3231(&t);
+    setrtc(&t);
 
     printf("Core %d: Launching FreeRTOS scheduler\n", get_core_num());
     /* Start the tasks and timer running. */
